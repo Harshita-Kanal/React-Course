@@ -22,8 +22,7 @@ class Main extends Component {
     }
 
 
-
-  render(){
+    render(){
     return(
       <div >
        <Navbar dark color="primary">

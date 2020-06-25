@@ -1,11 +1,6 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
-
-
-   
-
-   
-   
+ 
  function RenderDish({dish}) {
         if (dish != null)
             return (
@@ -22,6 +17,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
                 <div></div>
             );
             }
+
 
   function RenderComments({dish}){
         if(dish != null){
