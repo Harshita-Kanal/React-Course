@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Card, CardImg, CardImgOverlay, Label, CardText, Modal, ModalHeader, ModalBody, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button, Row, Col } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, LocalForm, Form, actions, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
@@ -76,6 +76,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
         //   alert('Current State is: ' + JSON.stringify(values))
           this.toggleModal()
           this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        //   this.props.resetFeedbackForm();
           // event.preventDefault()
       }
 
@@ -88,7 +89,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
                       <ModalHeader>Submit Comment</ModalHeader>
                       <ModalBody>
                           <div class= "container">
-                              <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                              <LocalForm  onSubmit={(values) => this.handleSubmit(values)}>
                                   <Row className="form-group">                                     
                                       <Label htmlFor="rating">Rating</Label>
                                           <Control.select model=".rating" name="rating"
