@@ -1,17 +1,41 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
-
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderLeader(props){
-const leaders = props.leaders.map(
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+else { 
+const leaders =
+    <Stagger in>
+        {
+props.leaders.map(
 (leader) => {
     return(
+        <Fade in>
         <div key = {leader.id} className = "col-12 mt-5">
         <Media>
             <Media left middle>
-                <Media className = "mt-10" image src = {leader.image}/>
+                <Media className = "mt-10" image src = {baseUrl + leader.image}/>
             </Media>
             <Media body className= "ml-5">
                 <Media heading>
@@ -23,13 +47,15 @@ const leaders = props.leaders.map(
             </Media>
         </Media>
         </div>
+        </Fade>
     );
-
-})
+    
+})}
+</Stagger>
 return leaders;
 }
 
-
+}
 
 
 
@@ -99,7 +125,8 @@ function About(props) {
                 <div className="col-12">
                     
                     <Media list>
-                        <RenderLeader leaders = {props.leaders} />
+                        
+                        <RenderLeader leaders={props.leaders} isLoading={props.leadersLoading} errMess={props.leadersErrMess} />
                     </Media>
                 </div>
             </div>
